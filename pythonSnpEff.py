@@ -30,34 +30,34 @@ with open(inputFile) as csv_file:
         
     length = high + low
     with open(outputFile,'w') as outFile:
-        outFile.write(f'{BCFTools}bcftools isec $WORK/SANVA-outputs/bcfoutput/*.gz -p $WORK/SANVA-outputs/All -n={length};\n')
-        prefix = "$WORK/SANVA-outputs/bcfoutput/"
+        outFile.write(f'{BCFTools}bcftools isec $WORK/ACM-outputs/bcfoutput/*.gz -p $WORK/ACM-outputs/All -n={length};\n')
+        prefix = "$WORK/ACM-outputs/bcfoutput/"
         allHigh = []
         for sample in highSamples :
             allHigh.append(prefix + sample + ".vcf.gz")
         allHighStr  = ' '.join(allHigh)         
-        outFile.write(f'{BCFTools}bcftools isec {allHighStr} -p $WORK/SANVA-outputs/high -n={high};\n')
+        outFile.write(f'{BCFTools}bcftools isec {allHighStr} -p $WORK/ACM-outputs/high -n={high};\n')
         allLow = []
         for sample in lowSamples :
             allLow.append(prefix + sample + ".vcf.gz")
         
         allLowStr  = ' '.join(allLow)         
 
-        outFile.write(f'{BCFTools}bcftools isec {allLowStr} -p $WORK/SANVA-outputs/low -n={low};\n')
-        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/SANVA-outputs/All/*.vcf;\n')
-        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/SANVA-outputs/high/*.vcf;\n')
-        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/SANVA-outputs/low/*.vcf;\n')
-        outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/SANVA-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/SANVA-outputs/all/0000.vcf > $WORK/SANVA-outputs/snpEff-outputs/snpEff_intersection_All.ann.vcf \n')
-        outFile.write('mv $WORK/SANVA/snpEff_genes.txt $WORK/SANVA-outputs/snpEff-outputs/snpEff-gene/snpEff_All_intersection_genes.txt \n')
-        outFile.write('mv $WORK/SANVA/snpEff_summary.html $WORK/SANVA-outputs/snpEff-outputs/snpEff-summary/snpEff_All_intersection_summary.html \n')
+        outFile.write(f'{BCFTools}bcftools isec {allLowStr} -p $WORK/ACM-outputs/low -n={low};\n')
+        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/ACM-outputs/All/*.vcf;\n')
+        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/ACM-outputs/high/*.vcf;\n')
+        outFile.write('sed -i \'s/^chr/Chromosome/\' $WORK/ACM-outputs/low/*.vcf;\n')
+        outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/ACM-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/ACM-outputs/all/0000.vcf > $WORK/ACM-outputs/snpEff-outputs/snpEff_intersection_All.ann.vcf \n')
+        outFile.write('mv $WORK/ACM/snpEff_genes.txt $WORK/ACM-outputs/snpEff-outputs/snpEff-gene/snpEff_All_intersection_genes.txt \n')
+        outFile.write('mv $WORK/ACM/snpEff_summary.html $WORK/ACM-outputs/snpEff-outputs/snpEff-summary/snpEff_All_intersection_summary.html \n')
         for i in highSamples:
-             outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/SANVA-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/SANVA-outputs/high/0000.vcf > $WORK/SANVA-outputs/snpEff-outputs/snpEff_intersection_high.ann.vcf \n')
-             outFile.write('mv $WORK/SANVA/snpEff_genes.txt $WORK/SANVA-outputs/snpEff-outputs/snpEff-gene/snpEff_high_intersection_genes.txt \n')
-             outFile.write('mv $WORK/SANVA/snpEff_summary.html $WORK/SANVA-outputs/snpEff-outputs/snpEff-summary/snpEff_high_intersection_summary.html \n')
+             outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/ACM-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/ACM-outputs/high/0000.vcf > $WORK/ACM-outputs/snpEff-outputs/snpEff_intersection_high.ann.vcf \n')
+             outFile.write('mv $WORK/ACM/snpEff_genes.txt $WORK/ACM-outputs/snpEff-outputs/snpEff-gene/snpEff_high_intersection_genes.txt \n')
+             outFile.write('mv $WORK/ACM/snpEff_summary.html $WORK/ACM-outputs/snpEff-outputs/snpEff-summary/snpEff_high_intersection_summary.html \n')
         for i in lowSamples:
-             outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/SANVA-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/SANVA-outputs/low/0000.vcf > $WORK/SANVA-outputs/snpEff-outputs/snpEff_intersection_low.ann.vcf \n')
-             outFile.write('mv $WORK/SANVA/snpEff_genes.txt $WORK/SANVA-outputs/snpEff-outputs/snpEff-gene/snpEff_low_intersection_genes.txt \n')
-             outFile.write('mv $WORK/SANVA/snpEff_summary.html $WORK/SANVA-outputs/snpEff-outputs/snpEff-summary/snpEff_low_intersection_summary.html \n')
+             outFile.write(f'{minicondaBin}java -Xmx4g -jar $WORK/ACM-softwares/snpEff/snpEff.jar -v Staphylococcus_aureus_subsp_aureus_nctc_8325 $WORK/ACM-outputs/low/0000.vcf > $WORK/ACM-outputs/snpEff-outputs/snpEff_intersection_low.ann.vcf \n')
+             outFile.write('mv $WORK/ACM/snpEff_genes.txt $WORK/ACM-outputs/snpEff-outputs/snpEff-gene/snpEff_low_intersection_genes.txt \n')
+             outFile.write('mv $WORK/ACM/snpEff_summary.html $WORK/ACM-outputs/snpEff-outputs/snpEff-summary/snpEff_low_intersection_summary.html \n')
 
 
 
