@@ -25,7 +25,7 @@ cd $WORK/ACM
 Rscript inputFile.R $GITHUB_DIR/ACM-data $GITHUB_DIR/InputFiles.csv
 ######## Trimmomatic #########
 ## make trimmomatic directory
-cd ACM-outputs
+cd $WORK/ACM-outputs
 mkdir trimmomatic
 cd trimmomatic
 mkdir trimlog
@@ -40,7 +40,7 @@ sh trimmomatic.sh > $WORK/SANVA-outputs/trimmomatic.log
 cd $WORK/ACM-outputs
 mkdir samfiles
 cd $WORK/ACM
-python3 pythonBwa.py ../InputFiles.csv $MINICONDA_HOME
+python3 pythonBwa.py ./InputFiles.csv $MINICONDA_HOME
 sh bwa.sh
 ###########  BAM ##################
 cd $WORK/ACM-outputs
