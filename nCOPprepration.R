@@ -13,8 +13,8 @@ library(dplyr)
 #---------------------------------------
 interactions<-read.csv(Stringinteraction , sep = "", header = FALSE)
 mapping<-read.csv(Stringmapping , sep=":",header = FALSE)
-#namess<- gsub(pattern = "1280.",replacement = "",mapping[,4], perl = T)
-#mapping[,4]<- namess
+namess<- gsub(pattern = "1280.",replacement = "",mapping[,4], perl = T)
+mapping[,4]<- namess
 PPI.mapping1<- NULL
 for(i in 1:nrow(interactions))
 {
